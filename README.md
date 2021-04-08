@@ -6,7 +6,7 @@ This repository contains Processing projects built in Java
 
 Install Processing from the Processing site for the OS you are working on
 
-## SETUP
+## SETUP INSTRUCTIONS
 
 Clone this repository into your local file system
 
