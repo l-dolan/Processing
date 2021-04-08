@@ -80,35 +80,35 @@ void setupConfig(Config config) {
   neckColour[2] = 128;
   config.addObject("NECK_COLOUR", neckColour);
   str += config.getObject("NECK_COLOUR");
-  print("  Setting Neck Colour: " + str, "\n");
+  //print("  Setting Neck Colour: " + str, "\n");
 
   float[] nutColour = new float[3];
   nutColour[0] = 128;
   nutColour[1] = 128;
   nutColour[2] = 128;
   config.addObject("NUT_COLOUR", nutColour);
-  print("  Setting Nut Colour: " + ((float[]) config.getObject("NUT_COLOUR")).toString(), "\n");
+  //print("  Setting Nut Colour: " + ((float[]) config.getObject("NUT_COLOUR")).toString(), "\n");
 
   float[] scaleColour = new float[3];
   scaleColour[0] = 128;
   scaleColour[1] = 0;
   scaleColour[2] = 0;
   config.addObject("SCALE_COLOUR", scaleColour);
-  print("  Setting Scale Colour: " + ((float[]) config.getObject("SCALE_COLOUR")).toString(), "\n");
+  //print("  Setting Scale Colour: " + ((float[]) config.getObject("SCALE_COLOUR")).toString(), "\n");
 
   float[] chordColour = new float[3];
   chordColour[0] = 0;
   chordColour[1] = 0;
   chordColour[2] = 128;
   config.addObject("CHORD_COLOUR", chordColour);
-  print("  Setting Chord Colour: " + ((float[]) config.getObject("CHORD_COLOUR")).toString(), "\n");
+  //print("  Setting Chord Colour: " + ((float[]) config.getObject("CHORD_COLOUR")).toString(), "\n");
 
   float[] scaleChordColour = new float[3];
   scaleChordColour[0] = 0;
   scaleChordColour[1] = 128;
   scaleChordColour[2] = 0;
   config.addObject("SCALE_CHORD_COLOUR", scaleChordColour);
-  print("  Setting Scale & Chord Colour: " + ((float[]) config.getObject("SCALE_CHORD_COLOUR")).toString(), "\n");
+  //print("  Setting Scale & Chord Colour: " + ((float[]) config.getObject("SCALE_CHORD_COLOUR")).toString(), "\n");
 
   config.addObject("SCALE_SWITCH", false);
   config.addObject("CHORD_SWITCH", false);
@@ -123,12 +123,13 @@ void setupConfig(Config config) {
   config.addObject("SCALE_SWITCH", true);
 
 
-  print("  Initlalising Chord...", "\n");
+  print("  Initlalising Chords...", "\n");
   config.addObject("CHORD_SWITCH", true);
 
   Chords allChords = new Chords();
   allChords.build();
   config.addObject("ALL_CHORDS", allChords.getAllChords());
+  config.addObject("CHORDS", allChords);
 
   String none = "NONE";
   config.addObject("NONE", none);

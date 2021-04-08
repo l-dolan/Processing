@@ -14,6 +14,8 @@ class Overlay {
 
   Scale scale;
 
+  HashMap<String, Chord> allChords;
+
   Chords chords;
 
   Chord chord;
@@ -43,8 +45,10 @@ class Overlay {
     scale = (Scale) config.getObject("SCALE");
     chord = (Chord) config.getObject("CHORD");
 
-    chords = new Chords();
-    chords.build();
+    allChords = (HashMap) config.getObject("ALL_CHORDS");
+    chords = (Chords) config.getObject("CHORDS"); 
+    //chords = new Chords();
+    //chords.build();
     allNotes = new Notes();
     legend = new Legend();
     textCells = new TextCells();
@@ -303,6 +307,7 @@ class Overlay {
 
       i = 0;
       for (String str : chords.getTypes()) {
+        
         String s = str;
 
         float x1, y1, delta;
@@ -366,7 +371,6 @@ class Overlay {
 
       y = dist + 2*(idx*dist);
 
-      //print(y, idx, "\n");
       option = "SCALE OPTIONS";
       if (currentScaleCell != null && currentScaleTypeCell.text != null) {
 
@@ -620,7 +624,7 @@ class Overlay {
               c.changeName(tc.text);
               c.addNotes(ns);
 
-              if (currentChord != null) {
+              if (currentChordCell != null) {
 
                 c.setType(currentChord.getType());
               } else {
@@ -647,7 +651,8 @@ class Overlay {
                 currentChordCell = tc;
               }
             }
-          } else if (chords.getTypes().contains(tc.text)) {
+            //} else if (chords.getTypes().contains(tc.text)) {
+          } else if (((Chords)config.getObject("CHORDS")).getTypes().contains(tc.text)) {
 
             if (mousePressed) {
 
@@ -675,7 +680,6 @@ class Overlay {
                 currentChord = c;
               }
 
-              print(tc.text, "\n");
               tc.checked = true;
               tc.chordTypeCell = true;
               tc.setAsCurrentCell();
@@ -690,17 +694,19 @@ class Overlay {
                 currentChordTypeCell = tc;
               }
 
-              if (currentChordCell != null && tc.text.equals(config.getObject("NONE").toString())) {
+              if (currentChordTypeCell != null && tc.text.equals(config.getObject("NONE").toString())) {
 
                 config.setObject("CHORD", null);
 
-                currentChordCell.setCurrentCell(false);
-                currentChordCell.checked = false;
+                if (currentChordCell != null) {
+                  currentChordCell.setCurrentCell(false);
+                  currentChordCell.checked = false;
+                  currentChordCell = null;
+                }
+
+                currentChord = null;
                 currentChordTypeCell.setCurrentCell(false);
                 currentChordTypeCell.checked = false;
-                currentChord = null;
-                currentChordCell = null;
-
                 for (TextCell tc1 : textCells.cells) {
 
                   if (tc1.option.equals("CHORD OPTIONS") && tc1.text.equals(((Pattern) config.getObject("PATTERN")).naturalMajor)) {
@@ -710,7 +716,6 @@ class Overlay {
                     currentChordTypeCell = tc1;
                   }
                 }
-                //}
               }
             }
           }
@@ -776,33 +781,13 @@ class Overlay {
               tc.checked = true;
               tc.setAsCurrentCell();
 
-              //if (currentScaleCell == null && currentScaleTypeCell != null) {
-
-              //  Chord c = new Chord();
-              //  c.changeName("A");
-              //  c.setNotes(chords.getChordNotes(c.name));
-              //  c.setType(tc.text);
-
-              //  c.build();
-              //  config.setObject("CHORD", c);
-              //  currentChordCell = textCells.getCell(c.name);
-              //  currentChordCell.setAsCurrentCell();
-              //  currentChordCell.checked = true;
-
-              //  textCells.getCell(currentScaleTypeCell.getId()).currentCell = false;
-              //  textCells.getCell(currentScaleTypeCell.getId()).checked = false;
-              //  currentScaleTypeCell = tc;
-              //  currentScaleTypeCell.setAsCurrentCell();
-              //  currentScaleTypeCell.checked = true;
-              //} else 
-              if (currentScaleCell != null && currentScaleTypeCell != null) {
+              if (currentScaleTypeCell != null) {
 
                 textCells.getCell(currentScaleTypeCell.getId()).currentCell = false;
                 textCells.getCell(currentScaleTypeCell.getId()).checked = false;
                 currentScaleTypeCell = tc;
                 currentScaleTypeCell.setAsCurrentCell();
                 currentScaleTypeCell.checked = true;
-                //} else if (currentScaleTypeCell == null) {
               } else {
                 currentScaleTypeCell = tc;
                 currentScaleTypeCell.setAsCurrentCell();

@@ -121,7 +121,7 @@ class Chords {
       sus2name = note.name() + "sus2";
       sus4name = note.name() + "sus4";
 
-      print("Adding sus2/minor/major/sus4 chords:", sus2name, minorcname, majorcname, sus4name, "\n");
+      print("    Adding sus2/minor/major/sus4 chords:", sus2name, minorcname, majorcname, sus4name, "\n");
       allChords.put(majorcname, majorc.getNotes());
       allChords.put(minorcname, minorc.getNotes());
       allChords.put(sus2name, sus2c.getNotes());

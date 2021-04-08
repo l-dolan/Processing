@@ -37,7 +37,7 @@ class Scale {
     //print("        Setting Notes...", "\n");
     for (String step : pattern.getPattern()) {
 
-      print(pattern.steps.get(step), "\n");
+      //print(pattern.steps.get(step), "\n");
       int dist = pattern.steps.get(step);
 
       move = currentPos + dist;

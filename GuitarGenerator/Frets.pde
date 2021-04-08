@@ -27,9 +27,11 @@ class Frets {
       frets.add(f);
     }
 
-    print("        Setting Notes...", "\n");
+    //print("        Setting Notes...", "\n");
 
     for (Fret f : frets) {
+
+      print("        Setting up Fret: " + (idx + 1) + "...", "\n");
 
       f.setNoStrings(noStrings);
       print("          Layering notes...", "\n");
@@ -37,8 +39,6 @@ class Frets {
       f.setStart(start.x + (f.id * fretWidth), start.y);
       f.build();
       idx++;
-
-      print("        Setting up Fret: " + (idx + 1) + "...", "\n");
     }
 
     print("      Finished Building Frets", "\n");

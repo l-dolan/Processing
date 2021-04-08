@@ -146,7 +146,7 @@ class Tuning {
       }
     }
 
-    print("  Finished layer notes.", "\n");
+    print("          Finished layering notes.", "\n");
 
     return idNotes;
   }

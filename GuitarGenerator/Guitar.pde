@@ -87,7 +87,7 @@ class Guitar {
 
     neck.setChord((Chord) config.getObject("CHORD"));
 
-    print("  Guitar Build Complete.", "\n");
+    print("Guitar Build Complete.", "\n");
   }
 
   void render() {
