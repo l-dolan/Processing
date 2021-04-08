@@ -301,21 +301,46 @@ class Overlay {
         }
       }
 
+      i = 0;
       for (String str : chords.getTypes()) {
         String s = str;
 
-        float x1, y1;
-        float delta = 100.0;
+        float x1, y1, delta;
+        //delta = 100.0;
 
-        sep = 50.0;
-        x1 = x + delta + (i*sep);
-        //y1 = dist + 2*((idx)*dist);
-        y1 = dist + 2*((startidx)*dist);
-        text(s, x1, y1);
-        TextCell tc = new TextCell(x1, y1, s, -h, option, sep);
-        textCells.addCell(tc);
-        i=0;
-        startidx++;
+        //sep = 50.0;
+        //x1 = x + delta + (i*sep);
+        ////y1 = dist + 2*((idx)*dist);
+        //y1 = dist + 2*((startidx)*dist);
+        //text(s, x1, y1);
+        //TextCell tc = new TextCell(x1, y1, s, -h, option, sep);
+        //textCells.addCell(tc);
+        //i=0;
+        //startidx++;
+
+        delta = 100.0;
+        sep = 200.0;
+        //x1 = x + delta;
+
+        if (i % 2 == 1) {
+
+          x1 = x + delta + (i*sep);
+          y1 = dist + 2*((startidx)*dist);
+          text(s, x1, y);
+          TextCell tc = new TextCell(x1, y1, s, -h, option, sep);
+          textCells.addCell(tc);
+          i=0;
+          startidx++;
+          //idx++;
+        } else { 
+
+          x1 = x + delta + (i*sep);
+          y1 = dist + 2*((startidx)*dist);
+          text(s, x1, y);
+          TextCell tc = new TextCell(x1, y1, s, -h, option, sep);
+          textCells.addCell(tc);
+          i++;
+        }
       }
     }
     // END REGION: chord options
@@ -629,7 +654,7 @@ class Overlay {
               Chord c = new Chord();
               if (chord != null) {
 
-                chord.changeName(currentRoot.name());
+                chord.changeName(currentChordCell.text);
                 chord.setType(tc.text);
                 chord.build();
                 chord.setNotes(chords.getChordNotes(chord.name()));
@@ -661,7 +686,7 @@ class Overlay {
                 currentChordTypeCell = tc;
               }
 
-              if (tc.text.equals(config.getObject("NONE").toString())) {
+              if (currentChordCell != null && tc.text.equals(config.getObject("NONE").toString())) {
 
                 config.setObject("CHORD", null);
 
@@ -747,7 +772,26 @@ class Overlay {
               tc.checked = true;
               tc.setAsCurrentCell();
 
-              if (currentScaleTypeCell != null) {
+              //if (currentScaleCell == null && currentScaleTypeCell != null) {
+
+              //  Chord c = new Chord();
+              //  c.changeName("A");
+              //  c.setNotes(chords.getChordNotes(c.name));
+              //  c.setType(tc.text);
+
+              //  c.build();
+              //  config.setObject("CHORD", c);
+              //  currentChordCell = textCells.getCell(c.name);
+              //  currentChordCell.setAsCurrentCell();
+              //  currentChordCell.checked = true;
+
+              //  textCells.getCell(currentScaleTypeCell.getId()).currentCell = false;
+              //  textCells.getCell(currentScaleTypeCell.getId()).checked = false;
+              //  currentScaleTypeCell = tc;
+              //  currentScaleTypeCell.setAsCurrentCell();
+              //  currentScaleTypeCell.checked = true;
+              //} else 
+              if (currentScaleCell != null && currentScaleTypeCell != null) {
 
                 textCells.getCell(currentScaleTypeCell.getId()).currentCell = false;
                 textCells.getCell(currentScaleTypeCell.getId()).checked = false;

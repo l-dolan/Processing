@@ -18,7 +18,11 @@ class Chord {
 
     if (type.equals("MINOR")) if (!name.endsWith("m")) name += "m";
 
-    if (type.equals("MAJOR")) if (name.endsWith("m")) name = name.replace("m", "");
+    if (type.equals("SUS2")) if (!name.endsWith("sus2")) name += "sus2";
+
+    if (type.equals("SUS4")) if (!name.endsWith("sus4")) name += "sus4";
+
+    //if (type.equals("MAJOR")) if (name.endsWith("m")) name = name.replace("m", "");
   }
 
   void changeName(String name_) {
