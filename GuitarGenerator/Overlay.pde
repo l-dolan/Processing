@@ -654,7 +654,11 @@ class Overlay {
               Chord c = new Chord();
               if (chord != null) {
 
-                chord.changeName(currentChordCell.text);
+                if (currentChordCell != null) {
+                  chord.changeName(currentChordCell.text);
+                } else {
+                  chord.changeName("A");
+                }
                 chord.setType(tc.text);
                 chord.build();
                 chord.setNotes(chords.getChordNotes(chord.name()));
